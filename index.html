@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WaffleStore — iOS App Downgrader</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg:       #0F0E0D;
+    --surface:  #1C1713;
+    --border:   #2E2318;
+    --amber:    #F5A623;
+    --amber-dim: #C47D0A;
+    --amber-glow: rgba(245, 166, 35, 0.12);
+    --cream:    #F0E6D3;
+    --muted:    #7A6A58;
+    --text:     #E8DDD0;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* Waffle grid signature texture */
+  .waffle-bg {
+    position: relative;
+  }
+  .waffle-bg::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(var(--border) 1px, transparent 1px),
+      linear-gradient(90deg, var(--border) 1px, transparent 1px);
+    background-size: 28px 28px;
+    opacity: 0.5;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .waffle-bg > * { position: relative; z-index: 1; }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2rem;
+    height: 60px;
+    background: rgba(15, 14, 13, 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1.15rem;
+    color: var(--cream);
+    letter-spacing: -0.02em;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .nav-logo span { color: var(--amber); }
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+  .nav-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--cream); }
+  .nav-cta {
+    background: var(--amber);
+    color: #0F0E0D;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 0.8rem;
+    padding: 0.45rem 1.1rem;
+    border-radius: 6px;
+    text-decoration: none;
+    letter-spacing: 0.02em;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .nav-cta:hover { background: #ffc04a; transform: translateY(-1px); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 8rem 2rem 6rem;
+    background: radial-gradient(ellipse 70% 50% at 50% 40%, rgba(245,166,35,0.06) 0%, transparent 70%);
+  }
+  .hero-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--amber);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .hero-eyebrow::before, .hero-eyebrow::after {
+    content: '';
+    width: 32px;
+    height: 1px;
+    background: var(--amber-dim);
+  }
+  .hero-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(3rem, 8vw, 6.5rem);
+    line-height: 0.95;
+    letter-spacing: -0.04em;
+    color: var(--cream);
+    margin-bottom: 1.5rem;
+  }
+  .hero-title .accent { color: var(--amber); }
+  .hero-subtitle {
+    max-width: 540px;
+    color: var(--muted);
+    font-size: 1.05rem;
+    font-weight: 400;
+    margin-bottom: 2.5rem;
+    line-height: 1.7;
+  }
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .btn-primary {
+    background: var(--amber);
+    color: #0F0E0D;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 0.9rem;
+    padding: 0.85rem 2rem;
+    border-radius: 8px;
+    text-decoration: none;
+    letter-spacing: 0.01em;
+    transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+    box-shadow: 0 0 0 0 rgba(245,166,35,0);
+  }
+  .btn-primary:hover {
+    background: #ffc04a;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(245,166,35,0.25);
+  }
+  .btn-ghost {
+    color: var(--muted);
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 0.85rem 2rem;
+    border-radius: 8px;
+    text-decoration: none;
+    border: 1px solid var(--border);
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .btn-ghost:hover { color: var(--cream); border-color: var(--muted); }
+
+  .hero-badges {
+    display: flex;
+    gap: 1rem;
+    margin-top: 3.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .badge {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--muted);
+    border: 1px solid var(--border);
+    padding: 0.3rem 0.75rem;
+    border-radius: 100px;
+    letter-spacing: 0.05em;
+  }
+  .badge.amber { color: var(--amber); border-color: rgba(245,166,35,0.3); background: rgba(245,166,35,0.06); }
+
+  /* WARNING BANNER */
+  .warning-banner {
+    background: rgba(245, 166, 35, 0.07);
+    border: 1px solid rgba(245, 166, 35, 0.25);
+    border-radius: 10px;
+    padding: 1rem 1.5rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.9rem;
+    max-width: 680px;
+    margin: 0 auto 5rem;
+    text-align: left;
+  }
+  .warning-icon {
+    font-size: 1.1rem;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .warning-banner p {
+    font-size: 0.825rem;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+  .warning-banner p strong { color: var(--amber); font-weight: 600; }
+
+  /* SECTION */
+  section {
+    padding: 6rem 2rem;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .section-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--amber);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    color: var(--cream);
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    margin-bottom: 1rem;
+  }
+  .section-desc {
+    color: var(--muted);
+    font-size: 1rem;
+    max-width: 520px;
+    margin-bottom: 3rem;
+  }
+
+  /* PREREQUISITES */
+  .prereq-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    background: var(--border);
+  }
+  .prereq-card {
+    background: var(--surface);
+    padding: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+  .prereq-icon {
+    font-size: 1.5rem;
+    margin-bottom: 0.25rem;
+  }
+  .prereq-card h3 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--cream);
+    letter-spacing: -0.01em;
+  }
+  .prereq-card p {
+    font-size: 0.825rem;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+  .prereq-card p code {
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--amber);
+    font-size: 0.8rem;
+    background: var(--amber-glow);
+    padding: 0.1em 0.35em;
+    border-radius: 3px;
+  }
+
+  /* STEPS */
+  .steps {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .step {
+    display: grid;
+    grid-template-columns: 48px 1fr;
+    gap: 1.5rem;
+    padding: 2rem 0;
+    border-bottom: 1px solid var(--border);
+    align-items: start;
+  }
+  .step:last-child { border-bottom: none; }
+  .step-num {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 0.75rem;
+    color: var(--amber);
+    background: var(--amber-glow);
+    border: 1px solid rgba(245,166,35,0.2);
+    border-radius: 8px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    letter-spacing: 0.05em;
+    margin-top: 2px;
+  }
+  .step-body h3 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--cream);
+    margin-bottom: 0.4rem;
+    letter-spacing: -0.01em;
+  }
+  .step-body p {
+    font-size: 0.875rem;
+    color: var(--muted);
+    line-height: 1.65;
+  }
+  .step-body p strong { color: var(--text); font-weight: 500; }
+  .step-body .tip {
+    margin-top: 0.6rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--amber-dim);
+    background: var(--amber-glow);
+    border: 1px solid rgba(245,166,35,0.15);
+    padding: 0.5rem 0.75rem;
+    border-radius: 6px;
+    display: inline-block;
+  }
+
+  /* TROUBLESHOOTING */
+  .faq { display: flex; flex-direction: column; gap: 2px; border-radius: 12px; overflow: hidden; }
+  details {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 0;
+  }
+  details:first-child { border-radius: 10px 10px 0 0; }
+  details:last-child { border-radius: 0 0 10px 10px; }
+  details + details { border-top: none; }
+  summary {
+    padding: 1.25rem 1.5rem;
+    cursor: pointer;
+    font-family: 'Syne', sans-serif;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--cream);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    list-style: none;
+    gap: 1rem;
+    transition: color 0.2s;
+  }
+  summary::-webkit-details-marker { display: none; }
+  summary::after {
+    content: '+';
+    color: var(--amber);
+    font-size: 1.2rem;
+    font-weight: 300;
+    flex-shrink: 0;
+    transition: transform 0.2s;
+  }
+  details[open] summary::after { transform: rotate(45deg); }
+  details[open] summary { color: var(--amber); }
+  .faq-body {
+    padding: 0 1.5rem 1.25rem;
+    font-size: 0.85rem;
+    color: var(--muted);
+    line-height: 1.7;
+    border-top: 1px solid var(--border);
+    padding-top: 1rem;
+  }
+  .faq-body strong { color: var(--text); }
+
+  /* CREDITS */
+  .credits-row {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-top: 2.5rem;
+  }
+  .credit-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1rem 1.25rem;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    transition: border-color 0.2s, transform 0.15s;
+  }
+  .credit-card:hover { border-color: var(--muted); transform: translateY(-2px); }
+  .credit-icon {
+    width: 32px;
+    height: 32px;
+    background: var(--amber-glow);
+    border: 1px solid rgba(245,166,35,0.2);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+  }
+  .credit-info { display: flex; flex-direction: column; }
+  .credit-name {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--cream);
+    letter-spacing: -0.01em;
+  }
+  .credit-role { font-size: 0.75rem; color: var(--muted); }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 2.5rem 2rem;
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.8rem;
+  }
+  footer a { color: var(--muted); text-decoration: none; }
+  footer a:hover { color: var(--amber); }
+
+  /* DIVIDER */
+  .divider {
+    width: 100%;
+    height: 1px;
+    background: var(--border);
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  /* COMMUNITY */
+  .community-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .community-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 0;
+    padding: 1.4rem 1.5rem;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 1.1rem;
+    transition: background 0.2s;
+  }
+  .community-grid .community-card:first-child { border-radius: 10px 10px 0 0; }
+  .community-grid .community-card:last-child { border-radius: 0 0 10px 10px; }
+  .community-card + .community-card { border-top: none; }
+  .community-card:hover { background: #231d16; }
+  .community-card-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 1.2rem;
+  }
+  .discord-icon { background: rgba(88,101,242,0.15); color: #7289da; border: 1px solid rgba(88,101,242,0.25); }
+  .github-icon  { background: rgba(240,246,252,0.08); color: #c9d1d9; border: 1px solid rgba(255,255,255,0.1); }
+  .kofi-icon    { background: rgba(255,94,91,0.12); border: 1px solid rgba(255,94,91,0.2); }
+  .community-card-body { flex: 1; }
+  .community-card-body h3 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--cream);
+    letter-spacing: -0.01em;
+    margin-bottom: 0.2rem;
+  }
+  .community-card-body p { font-size: 0.8rem; color: var(--muted); line-height: 1.5; }
+  .community-arrow { color: var(--muted); font-size: 1rem; flex-shrink: 0; transition: transform 0.2s, color 0.2s; }
+  .community-card:hover .community-arrow { transform: translateX(3px); color: var(--amber); }
+
+  @media (max-width: 600px) {
+    nav { padding: 0 1.25rem; }
+    .nav-links { display: none; }
+    section { padding: 4rem 1.25rem; }
+    .hero { padding: 7rem 1.25rem 4rem; }
+    .hero-title { font-size: clamp(2.5rem, 12vw, 4rem); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { transition: none !important; animation: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">🧇 <span>Waffle</span>Store</div>
+  <ul class="nav-links">
+    <li><a href="#how-to">How to use</a></li>
+    <li><a href="#troubleshooting">Troubleshooting</a></li>
+    <li><a href="#credits">Credits</a></li>
+    <li><a href="https://discord.com/invite/tweakbreak-1443331342799601666" target="_blank">Discord</a></li>
+    <li><a href="https://github.com/nxtcoreee3/WaffleStore" target="_blank">GitHub</a></li>
+  </ul>
+  <a class="nav-cta" href="https://github.com/nxtcoreee3/WaffleStore/releases/latest" target="_blank">Download</a>
+</nav>
+
+<!-- HERO -->
+<div class="waffle-bg">
+  <div class="hero">
+    <div class="hero-eyebrow">App Version Downgrader</div>
+    <h1 class="hero-title">Waffle<span class="accent">Store</span></h1>
+    <p class="hero-subtitle">Downgrade any App Store app to any previous version. No jailbreak. No exploit. Just your Apple ID and a sideloader.</p>
+    <div class="hero-actions">
+      <a class="btn-primary" href="https://github.com/nxtcoreee3/WaffleStore/releases/latest" target="_blank">Download IPA</a>
+      <a class="btn-ghost" href="#how-to">See how it works</a>
+    </div>
+    <div class="hero-badges">
+      <span class="badge amber">iOS 16.4+</span>
+      <span class="badge">Jailed (No Jailbreak)</span>
+      <span class="badge">iPhone &amp; iPad</span>
+      <span class="badge">2FA Required</span>
+    </div>
+  </div>
+
+  <div class="warning-banner">
+    <span class="warning-icon">⚠️</span>
+    <p><strong>Use at your own risk.</strong> Downgrading apps may cause you to lose app data or cause other unintended side effects. Make sure to offload the app (not delete) if you want to preserve data before downgrading.</p>
+  </div>
+</div>
+
+<!-- PREREQUISITES -->
+<section id="prereqs">
+  <div class="section-label">Before you begin</div>
+  <h2 class="section-title">Prerequisites</h2>
+  <p class="section-desc">Make sure you have these ready before installing WaffleStore.</p>
+  <div class="prereq-grid">
+    <div class="prereq-card">
+      <div class="prereq-icon">📱</div>
+      <h3>iPhone or iPad</h3>
+      <p>Running <code>iOS 16.4</code> or later. WaffleStore uses no exploits and requires no jailbreak.</p>
+    </div>
+    <div class="prereq-card">
+      <div class="prereq-icon">🔐</div>
+      <h3>Apple ID with 2FA</h3>
+      <p>Two-factor authentication must be <code>enabled</code> on your Apple ID before logging in.</p>
+    </div>
+    <div class="prereq-card">
+      <div class="prereq-icon">📦</div>
+      <h3>A Sideloader</h3>
+      <p>AltStore, Sideloadly, TrollStore, or any other sideloading method that works for you.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- HOW TO -->
+<section id="how-to">
+  <div class="section-label">Step-by-step</div>
+  <h2 class="section-title">How to downgrade an app</h2>
+  <p class="section-desc">Follow these steps in order. The whole process takes under five minutes.</p>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">01</div>
+      <div class="step-body">
+        <h3>Prepare the app</h3>
+        <p>Uninstall the app you want to downgrade from your device. <strong>To keep your data, offload the app instead of deleting it</strong> — go to Settings → General → iPhone Storage and tap Offload App.</p>
+        <span class="tip">💡 Offloading keeps your data; deleting wipes it.</span>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <div class="step-body">
+        <h3>Install WaffleStore</h3>
+        <p>Download the IPA and sideload it using your preferred method — AltStore, Sideloadly, TrollStore, etc.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">03</div>
+      <div class="step-body">
+        <h3>Log in with your Apple ID</h3>
+        <p>Open WaffleStore, enter your Apple ID credentials, then tap <strong>"Send 2FA Code."</strong></p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">04</div>
+      <div class="step-body">
+        <h3>Enter your 2FA code</h3>
+        <p>You'll likely receive a 2FA popup on one of your Apple devices. Tap <strong>Allow</strong>, note the six-digit code, and type it into WaffleStore. If no popup appears, try entering six random digits instead — this often works if you've used WaffleStore or MuffinStoreJailed before. Tap <strong>Log In</strong>.</p>
+        <span class="tip">💡 No popup? Try any 6 digits — it may still work.</span>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">05</div>
+      <div class="step-body">
+        <h3>Paste the App Store link</h3>
+        <p>Find the app you want on the App Store, copy its link, and paste it into the field in WaffleStore.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">06</div>
+      <div class="step-body">
+        <h3>Pick a version and wait</h3>
+        <p>Tap <strong>"Downgrade App,"</strong> choose the version you'd like, and let WaffleStore do its thing. Grab a coffee — it may take a minute.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- TROUBLESHOOTING -->
+<section id="troubleshooting">
+  <div class="section-label">Troubleshooting</div>
+  <h2 class="section-title">Something not working?</h2>
+  <p class="section-desc">Common issues and how to fix them.</p>
+  <div class="faq">
+    <details>
+      <summary>App crashes when trying to log in</summary>
+      <div class="faq-body">You likely entered the wrong 2FA code. Force-close WaffleStore from the app switcher and try logging in again with the correct code.</div>
+    </details>
+    <details>
+      <summary>App doesn't progress when clicking "Log In"</summary>
+      <div class="faq-body">Your Apple ID or password is probably incorrect. Force-close WaffleStore from the app switcher and double-check your credentials before trying again.</div>
+    </details>
+    <details>
+      <summary>I don't receive a 2FA code after clicking "Authenticate"</summary>
+      <div class="faq-body">Type any six random numbers into the field and proceed anyway. If you've previously signed into MuffinStoreJailed or WaffleStore — even on a different device — this likely still works because your session is cached.</div>
+    </details>
+    <details>
+      <summary>The app crashes when I try to downgrade</summary>
+      <div class="faq-body">You must have previously downloaded (purchased) the app on your Apple ID. If you haven't, download it from the App Store on any device first, then remove it. WaffleStore can only downgrade apps your account has access to.</div>
+    </details>
+    <details>
+      <summary>"Safari can't open the page" error appears</summary>
+      <div class="faq-body">Go to <strong>Settings → Apps → Safari</strong>, then under <strong>Privacy &amp; Security</strong>, disable <strong>"Not Secure Connection Warning."</strong> Also check that you don't have any active VPN or custom DNS settings that might be interfering with the connection.</div>
+    </details>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CREDITS -->
+<section id="credits">
+  <div class="section-label">Standing on shoulders</div>
+  <h2 class="section-title">Credits &amp; open source</h2>
+  <p class="section-desc">WaffleStore wouldn't exist without the work of the developers who came before.</p>
+  <div class="credits-row">
+    <a class="credit-card" href="https://github.com/jailbreakdotparty/PancakeStore/releases/latest" target="_blank">
+      <div class="credit-icon">🥞</div>
+      <div class="credit-info">
+        <span class="credit-name">PancakeStore</span>
+        <span class="credit-role">jailbreakdotparty · Direct base</span>
+      </div>
+    </a>
+    <a class="credit-card" href="https://github.com/mineek/MuffinStoreJailed-Public" target="_blank">
+      <div class="credit-icon">🧁</div>
+      <div class="credit-info">
+        <span class="credit-name">MuffinStoreJailed</span>
+        <span class="credit-role">mineek · Original project</span>
+      </div>
+    </a>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- COMMUNITY -->
+<section id="community">
+  <div class="section-label">Get involved</div>
+  <h2 class="section-title">Join the community</h2>
+  <p class="section-desc">Get help, report issues, or support the project's continued development.</p>
+  <div class="community-grid">
+    <a class="community-card" href="https://discord.com/invite/tweakbreak-1443331342799601666" target="_blank">
+      <div class="community-card-icon discord-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg>
+      </div>
+      <div class="community-card-body">
+        <h3>Discord</h3>
+        <p>Get help, chat with other users, and stay updated on new releases.</p>
+      </div>
+      <span class="community-arrow">→</span>
+    </a>
+    <a class="community-card" href="https://github.com/nxtcoreee3/WaffleStore" target="_blank">
+      <div class="community-card-icon github-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+      </div>
+      <div class="community-card-body">
+        <h3>GitHub</h3>
+        <p>View the source, report bugs, or contribute to WaffleStore's development.</p>
+      </div>
+      <span class="community-arrow">→</span>
+    </a>
+    <a class="community-card kofi-card" href="https://ko-fi.com/nxtcoreee3" target="_blank">
+      <div class="community-card-icon kofi-icon">☕</div>
+      <div class="community-card-body">
+        <h3>Support on Ko-fi</h3>
+        <p>WaffleStore is free and open source. If it's saved you a headache, a coffee helps keep it going.</p>
+      </div>
+      <span class="community-arrow">→</span>
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>WaffleStore is an independent project. Not affiliated with Apple Inc. &nbsp;·&nbsp;
+  <a href="https://github.com/nxtcoreee3/WaffleStore" target="_blank">GitHub</a>
+  &nbsp;·&nbsp; Use at your own risk.</p>
+</footer>
+
+</body>
+</html>
