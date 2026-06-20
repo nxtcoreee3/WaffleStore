@@ -1,7 +1,7 @@
 # WaffleStore
 A **jailed** app store app downgrader, based off of [MuffinStoreJailed](https://github.com/mineek/MuffinStoreJailed-Public) and [PancakeStore](https://github.com/jailbreakdotparty/PancakeStore). Supports iOS 16.4+ and does not use any exploits.
 
-[Based of PancakeStore](https://github.com/jailbreakdotparty/PancakeStore/releases/latest) • [Original Project (by mineek)](https://github.com/mineek/MuffinStoreJailed-Public)
+[PancakeStore (by jailbreakdotparty)](https://github.com/jailbreakdotparty/PancakeStore/releases/latest) • [Original Project (by mineek)](https://github.com/mineek/MuffinStoreJailed-Public)
 >[!WARNING]
 >Use this tool at your own risk! You may lose app data, and other damage could occur.
 
