@@ -29,3 +29,13 @@ A **jailed** app store app downgrader, based off of [MuffinStoreJailed](https://
 - **I don't receive a 2FA code when clicking "Authenticate":** Type six random numbers into the field and log in. This likely works because you had logged into MuffinStoreJailed or WaffleStore in the past, even on a different device.
 - **The app crashes when I try to downgrade:** You likely did not purchase (download) the app in the past. Download the app beforehand and remove it, or purchase it from another device.
 - **"Safari can't open the page" error:** Go to Settings > Apps > Safari, and under "Privacy & Security," disable "Not Secure Connection Warning." Also ensure that you don't have any VPN or DNS settings that might be affecting this.
+
+## Star History
+
+<a href="https://www.star-history.com/?repos=nxtcoreee3%2FWaffleStore&type=date&legend=top-left">
+ <picture>
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/chart?repos=nxtcoreee3/WaffleStore&type=date&theme=dark&legend=top-left" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/chart?repos=nxtcoreee3/WaffleStore&type=date&legend=top-left" />
+   <img alt="Star History Chart" src="https://api.star-history.com/chart?repos=nxtcoreee3/WaffleStore&type=date&legend=top-left" />
+ </picture>
+</a>
