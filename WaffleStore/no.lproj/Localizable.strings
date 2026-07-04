@@ -1,0 +1,103 @@
+/* Settings View */
+"Settings" = "Innstillinger";
+"About" = "Om";
+"Auto-Clean App" = "Automatisk rensing";
+"Auto-Clean Description" = "Dette er aktivert som standard for å sikre at WaffleStore ikke beholder lagret data fra appen du har nedgradert.";
+"Data" = "Data";
+"Storage Warning" = "Hvis WaffleStore tar opp mye plass, klikk på denne knappen.";
+"Export IPA" = "Eksporter IPA";
+"Clean Documents" = "Rens dokumenter";
+"Export History" = "Eksporter historikk";
+"Import History" = "Importer historikk";
+"Credits" = "Krediteringer";
+"Language" = "Språk";
+"Discord" = "Discord";
+"GitHub" = "GitHub";
+"Website" = "Nettsted";
+"Original creator of MuffinStore Jailed." = "Opprinnelig skaper av MuffinStore Jailed.";
+"Original creator of PancakeStore." = "Opprinnelig skaper av PancakeStore.";
+"UI changes and feature improvements." = "UI-endringer og funksjonsforbedringer.";
+
+/* Content View */
+"Logs" = "Logger";
+"Login" = "Logg inn";
+"Apple ID" = "Apple ID";
+"Password" = "Passord";
+"2FA Code" = "2FA-kode";
+"Verification Code" = "Verifiseringskode";
+"Downgrade App" = "Nedgrader app";
+"App Store Link" = "App Store-lenke";
+"Search App Store" = "Søk i App Store";
+"App Info" = "App-info";
+"App Link" = "App-lenke";
+"App Bundle ID" = "Pakke-ID";
+"Target App Version" = "Målversjon";
+"Downgrade History" = "Nedgraderingshistorikk";
+"No Downgrades Yet" = "Ingen nedgraderinger ennå";
+"No Downgrades Description" = "Nedgraderte apper vil vises her.";
+"Log Out" = "Logg ut";
+"Ready to Downgrade!" = "Klar til å nedgradere!";
+"History" = "Historikk";
+"Not logged in!" = "Ikke logget inn!";
+"Originally created by [mineek](https://github.com/mineek) with QoL improvements and backend fixes made by [jailbreak.party](https://github.com/jailbreakdotparty) with further upgrades by [nxtcoreee3](https://github.com/nxtcoreee3)." = "Opprinnelig laget av [mineek](https://github.com/mineek) med forbedringer og rettelser av [jailbreak.party](https://github.com/jailbreakdotparty) og videre oppgraderinger av [nxtcoreee3](https://github.com/nxtcoreee3).";
+"To downgrade an app, it must have been purchased on your account at some point in the past (when the app has a cloud icon next to it). It must also not be installed on your device currently, but you can offload it." = "For å nedgradere en app må den ha vært kjøpt på kontoen din tidligere. Den må heller ikke være installert på enheten din for øyeblikket, men du kan fjerne den (offload).";
+
+/* Search View */
+"Search apps..." = "Søk etter apper...";
+"Searching App Store..." = "Søker i App Store...";
+"Type to search apps" = "Skriv for å søke etter apper";
+"No apps found" = "Ingen apper funnet";
+
+/* Downgrade Process */
+"Starting downgrade" = "Starter nedgradering";
+"Packing installable IPA" = "Pakker installerbar IPA";
+"Preparing install manifest" = "Forbereder installasjonsmanifest";
+"Downgrade successful!" = "Nedgradering fullført!";
+"Ready to install" = "Klar til installasjon";
+"Enter version ID" = "Oppgi versjons-ID";
+"Select a version to downgrade to" = "Velg en versjon å nedgradere til";
+"Select a version" = "Velg en versjon";
+"Selected version %@" = "Valgt versjon %@";
+"Checking available versions" = "Sjekker tilgjengelige versjoner";
+"Choose a version" = "Velg en versjon";
+"Version ID" = "Versjons-ID";
+"Manual or Server Description" = "Vil du oppgi versjons-ID manuelt eller hente listen fra serveren?";
+"Manual" = "Manuelt";
+"Server" = "Server";
+"Error" = "Feil";
+"No version IDs error" = "Ingen versjons-ID-er funnet, kanskje en intern feil?";
+"Failed to downgrade app!" = "Kunne ikke nedgradere appen!";
+"Downgrade error description" = "Kunne ikke hente tilgjengelige versjons-ID-er. Dette kan skyldes at appen ikke er kjøpt ennå, eller at ingen versjoner er tilgjengelige.";
+"App data kept" = "App-data beholdt";
+"App data cleaned" = "App-data slettet";
+"Downloading IPA %@" = "Laster ned IPA %@";
+"Download complete" = "Nedlasting fullført";
+"Requesting download info" = "Ber om nedlastingsinfo";
+"Extracting IPA" = "Pakker ut IPA";
+"Writing metadata" = "Skriver metadata";
+"Applying purchase data" = "Legger til kjøpsdata";
+"IPA prepared" = "IPA klargjort";
+
+/* Navigation & Alerts */
+"No Apple ID details!" = "Ingen Apple ID-detaljer!";
+"No Apple ID details were input!" = "Ingen Apple ID-detaljer oppgitt!";
+"Login prompt description" = "Vennligst skriv inn både Apple ID-e-post og passord, og prøv igjen.";
+"Log Out Confirmation" = "Logger ut...";
+"Copy Output" = "Kopier utdata";
+"Log In" = "Logg inn";
+"Send 2FA Code" = "Send 2FA-kode";
+"Open App" = "Åpne app";
+"Go to Home Screen" = "Gå til hjemskjerm";
+
+/* Common */
+"Copy Value" = "Kopier verdi";
+"Done" = "Ferdig";
+"Cancel" = "Avbryt";
+"OK" = "OK";
+"Failed to log in!" = "Kunne ikke logge inn!";
+"Login Error Description" = "Sørg for at Apple ID og passord er riktig, og prøv igjen.";
+"Key Access Error" = "Kunne ikke hente nøkkelen. Vennligst prøv igjen med en annen Apple ID, gjerne en med 2FA aktivert.";
+"Login Error With Details" = "Sørg for at Apple ID og passord er riktig, og prøv igjen.\n\nFeil: %@";
+
+/* Community & Translation */
+"Translation Thank You" = "Takk til WaffleStore-fellesskapet for å hjelpe oss med å oversette!";

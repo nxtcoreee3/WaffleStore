@@ -1,0 +1,80 @@
+/* Settings View */
+"Settings" = "Inställningar";
+"About" = "Om";
+"Auto-Clean App" = "Automatisk rensning";
+"Auto-Clean Description" = "Detta är aktiverat som standard för att se till att WaffleStore inte behåller sparad data från appen du har nedgraderat.";
+"Data" = "Data";
+"Storage Warning" = "Om WaffleStore tar upp mycket utrymme, klicka på denna knapp.";
+"Export IPA" = "Exportera IPA";
+"Clean Documents" = "Rensa dokument";
+"Export History" = "Exportera historik";
+"Import History" = "Importera historik";
+"Credits" = "Tack till";
+"Language" = "Språk";
+
+/* Content View */
+"Logs" = "Loggar";
+"Login" = "Logga in";
+"Apple ID" = "Apple ID";
+"Password" = "Lösenord";
+"2FA Code" = "2FA-kod";
+"Verification Code" = "Verifieringskod";
+"Downgrade App" = "Nedgradera app";
+"App Store Link" = "App Store-länk";
+"Search App Store" = "Sök i App Store";
+"App Info" = "App-info";
+"App Link" = "App-länk";
+"App Bundle ID" = "Paket-ID";
+"Target App Version" = "Målversion";
+"Downgrade History" = "Nedgraderingshistorik";
+"No Downgrades Yet" = "Inga nedgraderingar än";
+"No Downgrades Description" = "Nedgraderade appar kommer att visas här.";
+"Log Out" = "Logga ut";
+"Ready to Downgrade!" = "Redo att nedgradera!";
+"History" = "Historik";
+
+/* Search View */
+"Search apps..." = "Sök appar...";
+"Searching App Store..." = "Söker i App Store...";
+"Type to search apps" = "Skriv för att söka appar";
+"No apps found" = "Inga appar hittades";
+"Search App Store" = "Sök i App Store";
+
+/* Downgrade Process */
+"Starting downgrade" = "Påbörjar nedgradering";
+"Packing installable IPA" = "Packar installerbar IPA";
+"Preparing install manifest" = "Förbereder installationsmanifest";
+"Downgrade successful!" = "Nedgradering lyckades!";
+"Ready to install" = "Redo att installera";
+"Enter version ID" = "Ange versions-ID";
+"Select a version to downgrade to" = "Välj en version att nedgradera till";
+"Select a version" = "Välj en version";
+"Selected version %@" = "Vald version %@";
+"Checking available versions" = "Kontrollerar tillgängliga versioner";
+"Choose a version" = "Välj en version";
+"Version ID" = "Versions-ID";
+"Manual or Server Description" = "Vill du ange versions-ID manuellt eller hämta listan från servern?";
+"Manual" = "Manuellt";
+"Server" = "Server";
+"Error" = "Fel";
+"No version IDs error" = "Inga versions-ID:n hittades, internt fel?";
+"Failed to downgrade app!" = "Misslyckades med att nedgradera appen!";
+"Downgrade error description" = "Kunde inte hämta tillgängliga versions-ID:n. Detta kan bero på att appen inte har köpts än, eller att inga versioner är tillgängliga.";
+
+/* Navigation & Alerts */
+"No Apple ID details!" = "Inga Apple ID-detaljer angivna!";
+"Login prompt description" = "Ange både din Apple ID-e-post och ditt lösenord och försök igen.";
+"Log Out Confirmation" = "Loggar ut...";
+"Copy Output" = "Kopiera utdata";
+
+/* Common */
+"Copy Value" = "Kopiera värde";
+"Done" = "Klar";
+"Cancel" = "Avbryt";
+"OK" = "OK";
+"Failed to log in!" = "Misslyckades med att logga in!";
+"Login Error Description" = "Se till att ditt Apple ID och lösenord är korrekta och försök igen.";
+"Key Access Error" = "Kunde inte hämta nyckeln. Försök igen med ett annat Apple ID, gärna ett med 2FA aktiverat.";
+
+/* Community & Translation */
+"Translation Thank You" = "Tack till WaffleStore-gemenskapen för att du hjälper oss att översätta!";

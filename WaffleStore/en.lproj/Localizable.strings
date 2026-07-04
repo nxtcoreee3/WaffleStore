@@ -1,0 +1,106 @@
+/* Settings View */
+"Settings" = "Settings";
+"About" = "About";
+"Auto-Clean App" = "Auto-Clean App";
+"Auto-Clean Description" = "This is toggled on by default to make sure that WaffleStore doesn't keep any saved data from the app you had downgraded.";
+"Data" = "Data";
+"Storage Warning" = "If WaffleStore is taking up a lot of storage, click this button.";
+"Export IPA" = "Export IPA";
+"Clean Documents" = "Clean Documents";
+"Export History" = "Export History";
+"Import History" = "Import History";
+"Credits" = "Credits";
+"Language" = "Language";
+"Discord" = "Discord";
+"GitHub" = "GitHub";
+"Website" = "Website";
+"Original creator of MuffinStore Jailed." = "Original creator of MuffinStore Jailed.";
+"Original creator of PancakeStore." = "Original creator of PancakeStore.";
+"UI changes and feature improvements." = "UI changes and feature improvements.";
+
+/* Content View */
+"Logs" = "Logs";
+"Login" = "Login";
+"Apple ID" = "Apple ID";
+"Password" = "Password";
+"2FA Code" = "2FA Code";
+"Verification Code" = "Verification Code";
+"Downgrade App" = "Downgrade App";
+"App Store Link" = "App Store Link";
+"Search App Store" = "Search App Store";
+"App Info" = "App Info";
+"App Link" = "App Link";
+"App Bundle ID" = "App Bundle ID";
+"Target App Version" = "Target App Version";
+"Downgrade History" = "Downgrade History";
+"No Downgrades Yet" = "No Downgrades Yet";
+"No Downgrades Description" = "Downgraded apps will appear here.";
+"Log Out" = "Log Out";
+"Ready to Downgrade!" = "Ready to Downgrade!";
+"History" = "History";
+"Not logged in!" = "Not logged in!";
+"Originally created by mineek with QoL improvements and backend fixes made by jailbreak.party with further upgrades by nxtcoreee3." = "Originally created by mineek with QoL improvements and backend fixes made by jailbreak.party with further upgrades by nxtcoreee3.";
+"To downgrade an app, it must have been purchased on your account at some point in the past (when the app has a cloud icon next to it). It must also not be installed on your device currently, but you can offload it." = "To downgrade an app, it must have been purchased on your account at some point in the past (when the app has a cloud icon next to it). It must also not be installed on your device currently, but you can offload it.";
+
+/* Search View */
+"Search apps..." = "Search apps...";
+"Searching App Store..." = "Searching App Store...";
+"Type to search apps" = "Type to search apps";
+"No apps found" = "No apps found";
+
+/* Downgrade Process */
+"Starting downgrade" = "Starting downgrade";
+"Packing installable IPA" = "Packing installable IPA";
+"Preparing install manifest" = "Preparing install manifest";
+"Downgrade successful!" = "Downgrade successful!";
+"Ready to install" = "Ready to install";
+"Enter version ID" = "Enter version ID";
+"Select a version to downgrade to" = "Select a version to downgrade to";
+"Select a version" = "Select a version";
+"Selected version %@" = "Selected version %@";
+"Checking available versions" = "Checking available versions";
+"Choose a version" = "Choose a version";
+"Version ID" = "Version ID";
+"Manual or Server Description" = "Do you want to enter the version ID manually or request the list of version IDs from the server?";
+"Manual" = "Manual";
+"Server" = "Server";
+"Error" = "Error";
+"No version IDs error" = "No version IDs, internal error maybe?";
+"Failed to downgrade app!" = "Failed to downgrade app!";
+"Downgrade error description" = "Failed to get available version ids. This may be because the app has not been purchased yet, or there are no versions available to downgrade to.";
+"App data kept" = "App data kept";
+"App data cleaned" = "App data cleaned";
+"Downloading IPA %@" = "Downloading IPA %@";
+"Download complete" = "Download complete";
+"Requesting download info" = "Requesting download info";
+"Extracting IPA" = "Extracting IPA";
+"Writing metadata" = "Writing metadata";
+"Applying purchase data" = "Applying purchase data";
+"IPA prepared" = "IPA prepared";
+
+/* Navigation & Alerts */
+"No Apple ID details!" = "No Apple ID details!";
+"No Apple ID details were input!" = "No Apple ID details were input!";
+"Login prompt description" = "Please type both your Apple ID email address & password, then try again.";
+"Log Out Confirmation" = "Logging out...";
+"Copy Output" = "Copy Output";
+"Log In" = "Log In";
+"Send 2FA Code" = "Send 2FA Code";
+"Open App" = "Open App";
+"Go to Home Screen" = "Go to Home Screen";
+
+/* Common */
+"Copy Value" = "Copy Value";
+"Done" = "Done";
+"Cancel" = "Cancel";
+"OK" = "OK";
+"Failed to log in!" = "Failed to log in!";
+"Login Error Description" = "Make sure that your Apple ID and password are correct, and then try again.";
+"Key Access Error" = "Could not get the key. Please try again with a different Apple ID, preferrably one with 2FA enabled.";
+"Login Error With Details" = "Make sure that your Apple ID and password are correct, and then try again.\n\nError: %@";
+
+/* Community & Translation */
+"Translation Thank You" = "Thank you to the WaffleStore community for helping us translate!";
+"Join Translation" = "Click here to help us translate WaffleStore into more languages.";
+
+"Translators" = "Translators";

@@ -1,0 +1,44 @@
+/* Settings View */
+"Settings" = "Ajustes";
+"About" = "Acerca de";
+"Auto-Clean App" = "Limpieza automática";
+"Auto-Clean Description" = "Esto está activado por defecto para asegurar que WaffleStore no guarde datos de la aplicación que has degradado.";
+"Data" = "Datos";
+"Storage Warning" = "Si WaffleStore ocupa mucho espacio, pulsa este botón.";
+"Export IPA" = "Exportar IPA";
+"Clean Documents" = "Limpiar documentos";
+"Export History" = "Exportar historial";
+"Import History" = "Importar historial";
+"Credits" = "Créditos";
+"Language" = "Idioma";
+
+/* Content View */
+"Logs" = "Registros";
+"Login" = "Iniciar sesión";
+"Apple ID" = "Apple ID";
+"Password" = "Contraseña";
+"2FA Code" = "Código 2FA";
+"Verification Code" = "Código de verificación";
+"Downgrade App" = "Degradar aplicación";
+"App Store Link" = "Enlace de la App Store";
+"Search App Store" = "Buscar en App Store";
+"App Info" = "Info de la App";
+"App Link" = "Enlace de la App";
+"App Bundle ID" = "ID del paquete";
+"Target App Version" = "Versión objetivo";
+"Downgrade History" = "Historial de degradación";
+"No Downgrades Yet" = "Sin degradaciones aún";
+"No Downgrades Description" = "Las aplicaciones degradadas aparecerán aquí.";
+"Log Out" = "Cerrar sesión";
+"Ready to Downgrade!" = "¡Listo para degradar!";
+"History" = "Historial";
+
+/* Common */
+"Copy Value" = "Copiar valor";
+"Done" = "Hecho";
+"Cancel" = "Cancelar";
+"Failed to log in!" = "¡Error al iniciar sesión!";
+"Login Error Description" = "Asegúrate de que tu Apple ID y contraseña son correctos e inténtalo de nuevo.";
+
+/* Community & Translation */
+"Translation Thank You" = "¡Gracias a la comunidad de WaffleStore por ayudarnos a traducir!";
