@@ -11,6 +11,12 @@ struct SettingsView: View {
     @StateObject private var localizationManager = LocalizationManager.shared
     @State private var showFileImporter = false
     
+    private var appVersionString: String {
+        let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "?"
+        let build = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as? String ?? "?"
+        return "\(version) (\(build))"
+    }
+    
     var body: some View {
         NavigationStack {
             List {

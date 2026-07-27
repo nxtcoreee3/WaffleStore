@@ -378,5 +378,5 @@ struct SidebarToggleModifier: ViewModifier {
 
 #Preview {
     ContentView()
-        .environmentObject(AppData())
+        .environmentObject(AppData.shared)
 }

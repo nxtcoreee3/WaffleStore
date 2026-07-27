@@ -1,4 +1,6 @@
 import SwiftUI
+import Combine
+import Combine
 
 enum Language: String, CaseIterable, Identifiable {
     case english = "en"
@@ -22,7 +24,9 @@ enum Language: String, CaseIterable, Identifiable {
     }
 }
 
+@MainActor
 class LocalizationManager: ObservableObject {
+    
     static let shared = LocalizationManager()
     
     @Published var currentLanguage: Language {
@@ -36,15 +40,25 @@ class LocalizationManager: ObservableObject {
         self.currentLanguage = Language(rawValue: savedLanguage) ?? .english
     }
     
-    func localizedString(_ key: String) -> String {
-        let path = Bundle.main.path(forResource: currentLanguage.rawValue, ofType: "lproj")
-        let bundle = path != nil ? Bundle(path: path!) : Bundle.main
-        return NSLocalizedString(key, bundle: bundle ?? .main, comment: "")
+    nonisolated func localizedString(_ key: String) -> String {
+        let langCode = UserDefaults.standard.string(forKey: "appLanguage") ?? "en"
+        if let path = Bundle.main.path(forResource: langCode, ofType: "lproj"),
+           let bundle = Bundle(path: path) {
+            return NSLocalizedString(key, bundle: bundle, comment: "")
+        } else {
+            return NSLocalizedString(key, comment: "")
+        }
     }
 }
 
 extension String {
-    var localized: String {
-        return LocalizationManager.shared.localizedString(self)
+    nonisolated var localized: String {
+        let langCode = UserDefaults.standard.string(forKey: "appLanguage") ?? "en"
+        if let path = Bundle.main.path(forResource: langCode, ofType: "lproj"),
+           let bundle = Bundle(path: path) {
+            return NSLocalizedString(self, bundle: bundle, comment: "")
+        } else {
+            return NSLocalizedString(self, comment: "")
+        }
     }
 }

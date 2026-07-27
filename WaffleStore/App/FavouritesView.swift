@@ -65,7 +65,7 @@ struct FavouriteAppCell: View {
             HStack(alignment: .top) {
                 Image(systemName: "star.fill")
                     .frame(width: 22, height: 22, alignment: .center)
-                    .foregroundStyle(.yellow)
+                    .foregroundStyle(.mint)
                 VStack(alignment: .leading, spacing: 4) {
                     Text(favourite.appName)
                         .font(.headline)
@@ -87,5 +87,5 @@ struct FavouriteAppCell: View {
 
 #Preview {
     FavouritesView()
-        .environmentObject(AppData())
+        .environmentObject(AppData.shared)
 }

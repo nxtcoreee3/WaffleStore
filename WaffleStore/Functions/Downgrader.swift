@@ -25,7 +25,7 @@ struct SafariWebView: UIViewControllerRepresentable {
 }
 
 func installAppVersion(appId: String, versionId: String, ipaTool: IPATool, recordsHistory: Bool) {
-    @ObservedObject var appData = AppData.shared
+    let appData = AppData.shared
     
     setDowngradeProgress(0.02, detail: "Starting downgrade".localized)
     let path = ipaTool.downloadIPAForVersion(appId: appId, appVerId: versionId) { progress, detail in
@@ -206,7 +206,7 @@ func getAllAppVersionIdsFromServer(appId: String, ipaTool: IPATool) {
 }
 
 func downgradeApp(appId: String, ipaTool: IPATool) {
-    @ObservedObject var appData = AppData.shared
+    let appData = AppData.shared
     
     setDowngradeProgress(0.01, detail: "Checking available versions".localized)
     let versionIds = ipaTool.getVersionIDList(appId: appId)

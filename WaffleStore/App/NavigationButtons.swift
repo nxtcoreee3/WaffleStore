@@ -54,7 +54,13 @@ struct NavigationButtons: View {
                     Button(action: {
                         Haptic.shared.play(.soft)
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
-                            _ = LSApplicationWorkspace.default()?.openApplication(withBundleID: "com.nxtcoreee3.WaffleStore")
+#if canImport(UIKit)
+    if let url = URL(string: "wafflestore://open") {
+        UIApplication.shared.open(url, options: [:], completionHandler: nil)
+    } else if let appStoreURL = URL(string: "itms-apps://itunes.apple.com/app/id") {
+        UIApplication.shared.open(appStoreURL, options: [:], completionHandler: nil)
+    }
+#endif
                         }
                     }) {
                         ButtonLabel(text: "Open App".localized, icon: "arrow.up.forward.app")
@@ -137,24 +143,10 @@ struct NavigationButtons: View {
                     }) {
                         ButtonLabel(text: isFavourited ? "Remove from Favourites".localized : "Add to Favourites".localized, icon: isFavourited ? "star.fill" : "star")
                     }
-                    .buttonStyle(FancyButtonStyle(color: .yellow))
+                    .buttonStyle(FancyButtonStyle(color: .mint))
                     .disabled(appData.appLink.isEmpty)
                     
-                    /*
-                    Button(action: {
-                        Haptic.shared.play(.heavy)
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
-                            appData.isAuthenticated = false
-                            EncryptedKeychainWrapper.nuke()
-                            EncryptedKeychainWrapper.generateAndStoreKey()
-                            sleep(3)
-                            exitinator()
-                        }
-                    }) {
-                        ButtonLabel(text: "Log Out & Exit", icon: "xmark")
-                    }
-                    .buttonStyle(FancyButtonStyle(color: .red))
-                     */
+
                 }
             }
         }

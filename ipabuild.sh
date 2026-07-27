@@ -28,6 +28,7 @@ xcodebuild -project "$WORKING_LOCATION/$APPLICATION_NAME.xcodeproj" \
     -scheme "$APPLICATION_NAME" \
     -configuration Debug \
     -derivedDataPath "$WORKING_LOCATION/build/DerivedDataApp" \
+    -sdk iphoneos \
     -destination 'generic/platform=iOS' \
     clean build \
     CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGN_ENTITLEMENTS="" CODE_SIGNING_ALLOWED="NO"
@@ -40,6 +41,7 @@ xcodebuild -project "$WORKING_LOCATION/$APPLICATION_NAME.xcodeproj" \
     -scheme "$APPLICATION_NAME" \
     -configuration Release \
     -derivedDataPath "$WORKING_LOCATION/build/DerivedDataApp" \
+    -sdk iphoneos \
     -destination 'generic/platform=iOS' \
     clean build \
     CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGN_ENTITLEMENTS="" CODE_SIGNING_ALLOWED="NO"

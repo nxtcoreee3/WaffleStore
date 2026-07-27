@@ -20,7 +20,6 @@ struct WaffleStoreApp: App {
     @AppStorage("autoCleanApp") var autoCleanApp: Bool = true
     
     init() {
-        // Setup log stuff (redirect stdout)
         setvbuf(stdout, nil, _IONBF, 0)
         dup2(pipe.fileHandleForWriting.fileDescriptor, STDOUT_FILENO)
         #if DEBUG

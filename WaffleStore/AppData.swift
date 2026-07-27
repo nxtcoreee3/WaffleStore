@@ -1,3 +1,5 @@
+// xcode: set sdk=iOS
+
 //
 //  AppData.swift
 //  WaffleStore
@@ -6,7 +8,9 @@
 //
 
 import SwiftUI
+import Combine
 
+@MainActor
 final class AppData: ObservableObject {
     static let shared = AppData()
     
@@ -43,3 +47,4 @@ final class AppData: ObservableObject {
     
     @Published var favourites: [FavouriteApp] = FavouritesStore.load()
 }
+
