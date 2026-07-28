@@ -116,6 +116,7 @@
   /* HERO */
   .hero {
     min-height: 100vh;
+    min-height: 100svh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -535,12 +536,33 @@
   .community-arrow { color: var(--muted); font-size: 1rem; flex-shrink: 0; transition: transform 0.2s, color 0.2s; }
   .community-card:hover .community-arrow { transform: translateX(3px); color: var(--amber); }
 
-  @media (max-width: 600px) {
+  @media (max-width: 860px) {
     nav { padding: 0 1.25rem; }
     .nav-links { display: none; }
+  }
+
+  @media (max-width: 600px) {
     section { padding: 4rem 1.25rem; }
-    .hero { padding: 7rem 1.25rem 4rem; }
+    .hero { padding: 6.5rem 1.25rem 3.5rem; }
+    .hero-icon { width: 68px; height: 68px; border-radius: 16px; margin-bottom: 1.25rem; }
     .hero-title { font-size: clamp(2.5rem, 12vw, 4rem); }
+    .hero-subtitle { font-size: 0.95rem; margin-bottom: 2rem; }
+    .hero-actions { flex-direction: column; width: 100%; }
+    .btn-primary, .btn-ghost { width: 100%; text-align: center; padding: 0.9rem 1.5rem; }
+    .hero-badges { margin-top: 2.5rem; gap: 0.6rem; }
+    .badge { font-size: 0.65rem; padding: 0.3rem 0.65rem; text-align: center; }
+    .warning-banner { margin: 0 auto 3.5rem; padding: 0.9rem 1.1rem; }
+    .section-desc { margin-bottom: 2rem; }
+    .credits-row { flex-direction: column; }
+    .credit-card { width: 100%; }
+    .step { grid-template-columns: 40px 1fr; gap: 1rem; padding: 1.5rem 0; }
+    .step-num { width: 34px; height: 34px; font-size: 0.7rem; }
+    .nav-logo { font-size: 1rem; }
+  }
+
+  @media (max-width: 380px) {
+    .hero-title { font-size: clamp(2.1rem, 13vw, 3rem); }
+    .nav-cta { padding: 0.4rem 0.85rem; font-size: 0.75rem; }
   }
 
   @media (prefers-reduced-motion: reduce) {
