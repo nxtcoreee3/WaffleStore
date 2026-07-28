@@ -5,6 +5,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>WaffleStore - iOS App Downgrader</title>
+<link rel="icon" type="image/png" href="WaffleStore/Icons/favicon-32.png" media="(prefers-color-scheme: light)">
+<link rel="icon" type="image/png" href="WaffleStore/Icons/favicon-32-dark.png" media="(prefers-color-scheme: dark)">
+<link rel="apple-touch-icon" href="WaffleStore/Icons/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
@@ -77,6 +80,12 @@
     gap: 0.5rem;
   }
   .nav-logo span { color: var(--amber); }
+  .nav-logo-icon {
+    width: 26px;
+    height: 26px;
+    border-radius: 7px;
+    box-shadow: 0 0 0 1px rgba(255,255,255,0.06);
+  }
   .nav-links {
     display: flex;
     gap: 2rem;
@@ -114,7 +123,21 @@
     text-align: center;
     padding: 8rem 2rem 6rem;
     background: radial-gradient(ellipse 70% 50% at 50% 40%, rgba(59,158,255,0.06) 0%, transparent 70%);
+    position: relative;
+    overflow: hidden;
   }
+  .hero-watermark {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: min(700px, 90vw);
+    transform: translate(-50%, -50%);
+    opacity: 0.05;
+    pointer-events: none;
+    z-index: 0;
+    user-select: none;
+  }
+  .hero > * { position: relative; z-index: 1; }
   .hero-eyebrow {
     font-family: 'JetBrains Mono', monospace;
     font-size: 0.75rem;
@@ -530,7 +553,7 @@
 
 <!-- NAV -->
 <nav>
-  <div class="nav-logo">🧇 <span>Waffle</span>Store</div>
+  <div class="nav-logo"><img class="nav-logo-icon" src="WaffleStore/Icons/icon-64.png" alt="WaffleStore icon"> <span>Waffle</span>Store</div>
   <ul class="nav-links">
     <li><a href="#how-to">How to use</a></li>
     <li><a href="#troubleshooting">Troubleshooting</a></li>
@@ -544,6 +567,7 @@
 <!-- HERO -->
 <div class="waffle-bg">
   <div class="hero">
+    <img class="hero-watermark" src="WaffleStore/Icons/waffle-watermark.png" alt="" aria-hidden="true">
     <div class="hero-eyebrow">App Version Downgrader</div>
     <h1 class="hero-title">Waffle<span class="accent">Store</span></h1>
     <p class="hero-subtitle">Downgrade any App Store app to any previous version. No jailbreak. No exploit. Just your Apple ID and a sideloader.</p>
