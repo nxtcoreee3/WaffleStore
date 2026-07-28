@@ -138,6 +138,16 @@
     user-select: none;
   }
   .hero > * { position: relative; z-index: 1; }
+  .hero-icon {
+    width: 92px;
+    height: 92px;
+    border-radius: 21px;
+    margin-bottom: 1.75rem;
+    box-shadow:
+      0 12px 32px rgba(59,158,255,0.35),
+      0 2px 10px rgba(0,0,0,0.35),
+      0 0 0 1px rgba(255,255,255,0.06);
+  }
   .hero-eyebrow {
     font-family: 'JetBrains Mono', monospace;
     font-size: 0.75rem;
@@ -568,6 +578,7 @@
 <div class="waffle-bg">
   <div class="hero">
     <img class="hero-watermark" src="Icons/waffle-watermark.png" alt="" aria-hidden="true">
+    <img class="hero-icon" src="Icons/apple-touch-icon.png" alt="WaffleStore icon">
     <div class="hero-eyebrow">App Version Downgrader</div>
     <h1 class="hero-title">Waffle<span class="accent">Store</span></h1>
     <p class="hero-subtitle">Downgrade any App Store app to any previous version. No jailbreak. No exploit. Just your Apple ID and a sideloader.</p>
