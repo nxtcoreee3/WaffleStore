@@ -14,9 +14,9 @@
     --bg:       #0F0E0D;
     --surface:  #1C1713;
     --border:   #2E2318;
-    --amber:    #F5A623;
-    --amber-dim: #C47D0A;
-    --amber-glow: rgba(245, 166, 35, 0.12);
+    --amber:    #3B9EFF;
+    --amber-dim: #1C7ED6;
+    --amber-glow: rgba(59, 158, 255, 0.12);
     --cream:    #F0E6D3;
     --muted:    #7A6A58;
     --text:     #E8DDD0;
@@ -102,7 +102,7 @@
     letter-spacing: 0.02em;
     transition: background 0.2s, transform 0.15s;
   }
-  .nav-cta:hover { background: #ffc04a; transform: translateY(-1px); }
+  .nav-cta:hover { background: #6ab8ff; transform: translateY(-1px); }
 
   /* HERO */
   .hero {
@@ -113,7 +113,7 @@
     justify-content: center;
     text-align: center;
     padding: 8rem 2rem 6rem;
-    background: radial-gradient(ellipse 70% 50% at 50% 40%, rgba(245,166,35,0.06) 0%, transparent 70%);
+    background: radial-gradient(ellipse 70% 50% at 50% 40%, rgba(59,158,255,0.06) 0%, transparent 70%);
   }
   .hero-eyebrow {
     font-family: 'JetBrains Mono', monospace;
@@ -167,12 +167,12 @@
     text-decoration: none;
     letter-spacing: 0.01em;
     transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
-    box-shadow: 0 0 0 0 rgba(245,166,35,0);
+    box-shadow: 0 0 0 0 rgba(59,158,255,0);
   }
   .btn-primary:hover {
-    background: #ffc04a;
+    background: #6ab8ff;
     transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(245,166,35,0.25);
+    box-shadow: 0 8px 24px rgba(59,158,255,0.25);
   }
   .btn-ghost {
     color: var(--muted);
@@ -202,12 +202,12 @@
     border-radius: 100px;
     letter-spacing: 0.05em;
   }
-  .badge.amber { color: var(--amber); border-color: rgba(245,166,35,0.3); background: rgba(245,166,35,0.06); }
+  .badge.amber { color: var(--amber); border-color: rgba(59,158,255,0.3); background: rgba(59,158,255,0.06); }
 
   /* WARNING BANNER */
   .warning-banner {
-    background: rgba(245, 166, 35, 0.07);
-    border: 1px solid rgba(245, 166, 35, 0.25);
+    background: rgba(59, 158, 255, 0.07);
+    border: 1px solid rgba(59, 158, 255, 0.25);
     border-radius: 10px;
     padding: 1rem 1.5rem;
     display: flex;
@@ -322,7 +322,7 @@
     font-size: 0.75rem;
     color: var(--amber);
     background: var(--amber-glow);
-    border: 1px solid rgba(245,166,35,0.2);
+    border: 1px solid rgba(59,158,255,0.2);
     border-radius: 8px;
     width: 40px;
     height: 40px;
@@ -353,7 +353,7 @@
     font-size: 0.75rem;
     color: var(--amber-dim);
     background: var(--amber-glow);
-    border: 1px solid rgba(245,166,35,0.15);
+    border: 1px solid rgba(59,158,255,0.15);
     padding: 0.5rem 0.75rem;
     border-radius: 6px;
     display: inline-block;
@@ -427,7 +427,7 @@
     width: 32px;
     height: 32px;
     background: var(--amber-glow);
-    border: 1px solid rgba(245,166,35,0.2);
+    border: 1px solid rgba(59,158,255,0.2);
     border-radius: 8px;
     display: flex;
     align-items: center;
@@ -552,6 +552,7 @@
       <a class="btn-ghost" href="#how-to">See how it works</a>
     </div>
     <div class="hero-badges">
+      <span class="badge amber">+2K Downloads · Last measured 28th July 2026</span>
       <span class="badge amber">iOS 16.4+</span>
       <span class="badge">Jailed (No Jailbreak)</span>
       <span class="badge">iPhone &amp; iPad</span>
