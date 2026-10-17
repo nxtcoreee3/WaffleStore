@@ -1,0 +1,13 @@
+./commands.go
+./commands_string.go
+./cpu.go
+./flags.go
+./funcvariant_string.go
+./header.go
+./header_string.go
+./nlist.go
+./reloc.go
+./reloc_string.go
+./section.go
+./types.go
+./types_string.go

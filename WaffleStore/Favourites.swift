@@ -42,7 +42,13 @@ enum FavouritesStore {
     
     static func add(_ app: FavouriteApp) -> [FavouriteApp] {
         var favourites = load()
-        if !favourites.contains(where: { $0.bundleId == app.bundleId }) {
+        let alreadySaved = favourites.contains {
+            if !app.bundleId.isEmpty && !$0.bundleId.isEmpty {
+                return $0.bundleId == app.bundleId
+            }
+            return $0.appLink == app.appLink
+        }
+        if !alreadySaved {
             favourites.insert(app, at: 0)
             save(favourites)
         }

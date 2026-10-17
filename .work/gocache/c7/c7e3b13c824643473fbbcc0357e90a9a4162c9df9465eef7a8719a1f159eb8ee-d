@@ -1,0 +1,6 @@
+./kbsync.go
+./machine.go
+./shim_memory.go
+./shim_platform.go
+./shims.go
+./storeagent.go

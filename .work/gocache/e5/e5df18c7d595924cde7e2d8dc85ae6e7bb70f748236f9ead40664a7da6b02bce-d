@@ -1,0 +1,11 @@
+./atob.go
+./atoc.go
+./atof.go
+./atoi.go
+./ctoa.go
+./decimal.go
+./deps.go
+./ftoa.go
+./itoa.go
+./pow10tab.go
+./uscale.go

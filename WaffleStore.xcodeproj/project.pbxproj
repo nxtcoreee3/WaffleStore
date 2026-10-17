@@ -7,12 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B00100000000000000000001 /* MapleSAP in Frameworks */ = {isa = PBXBuildFile; productRef = B00100000000000000000002 /* MapleSAP */; };
+		B00100000000000000000004 /* build/Native/libunicorn.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B00100000000000000000005 /* build/Native/libunicorn.a */; };
+		B00100000000000000000007 /* build/Native/GoThirdPartyNotices.txt in Resources */ = {isa = PBXBuildFile; fileRef = B00100000000000000000008 /* build/Native/GoThirdPartyNotices.txt */; };
+		B00100000000000000000009 /* build/Native/UNICORN-COPYING in Resources */ = {isa = PBXBuildFile; fileRef = B0010000000000000000000A /* build/Native/UNICORN-COPYING */; };
+		B0010000000000000000000B /* ZsignSwift in Frameworks */ = {isa = PBXBuildFile; productRef = B0010000000000000000000D /* ZsignSwift */; };
+		E6DACF16307A6F020029F6FE /* Alertinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6DACF15307A6F020029F6FE /* Alertinator.swift */; };
 		E6F5D491301692B600FEEC8A /* PartyUI in Frameworks */ = {isa = PBXBuildFile; productRef = 63A7EF12A4ADD015377FF7FF /* PartyUI */; };
 		E6F5D492301692B600FEEC8A /* Telegraph in Frameworks */ = {isa = PBXBuildFile; productRef = 4B51818CFD6F6A0FD21DFB33 /* Telegraph */; };
 		E6F5D493301692B600FEEC8A /* Zip in Frameworks */ = {isa = PBXBuildFile; productRef = C5185BB0AED7DC860043BA42 /* Zip */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B00100000000000000000005 /* build/Native/libunicorn.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = build/Native/libunicorn.a; sourceTree = SOURCE_ROOT; };
+		B00100000000000000000008 /* build/Native/GoThirdPartyNotices.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = build/Native/GoThirdPartyNotices.txt; sourceTree = SOURCE_ROOT; };
+		B0010000000000000000000A /* build/Native/UNICORN-COPYING */ = {isa = PBXFileReference; lastKnownFileType = text; path = "build/Native/UNICORN-COPYING"; sourceTree = SOURCE_ROOT; };
+		E6DACF15307A6F020029F6FE /* Alertinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alertinator.swift; sourceTree = "<group>"; };
 		E6F5D41330168FCC00FEEC8A /* WaffleStore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WaffleStore.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -29,6 +39,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B00100000000000000000004 /* build/Native/libunicorn.a in Frameworks */,
+				B00100000000000000000001 /* MapleSAP in Frameworks */,
+				B0010000000000000000000B /* ZsignSwift in Frameworks */,
 				E6F5D493301692B600FEEC8A /* Zip in Frameworks */,
 				E6F5D492301692B600FEEC8A /* Telegraph in Frameworks */,
 				E6F5D491301692B600FEEC8A /* PartyUI in Frameworks */,
@@ -38,11 +51,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E6EB81263077F6ED00FC3D1F /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				B00100000000000000000005 /* build/Native/libunicorn.a */,
+				B00100000000000000000008 /* build/Native/GoThirdPartyNotices.txt */,
+				B0010000000000000000000A /* build/Native/UNICORN-COPYING */,
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
 		E6F5D40A30168FCC00FEEC8A = {
 			isa = PBXGroup;
 			children = (
 				E6F5D41530168FCC00FEEC8A /* WaffleStore */,
 				E6F5D41430168FCC00FEEC8A /* Products */,
+				E6EB81263077F6ED00FC3D1F /* Recovered References */,
+				E6DACF15307A6F020029F6FE /* Alertinator.swift */,
 			);
 			sourceTree = "<group>";
 		};
@@ -61,6 +86,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E6F5D41E30168FCD00FEEC8A /* Build configuration list for PBXNativeTarget "WaffleStore" */;
 			buildPhases = (
+				B00100000000000000000006 /* ShellScript */,
 				E6F5D40F30168FCC00FEEC8A /* Sources */,
 				E6F5D41030168FCC00FEEC8A /* Frameworks */,
 				E6F5D41130168FCC00FEEC8A /* Resources */,
@@ -74,6 +100,8 @@
 			);
 			name = WaffleStore;
 			packageProductDependencies = (
+				B00100000000000000000002 /* MapleSAP */,
+				B0010000000000000000000D /* ZsignSwift */,
 				63A7EF12A4ADD015377FF7FF /* PartyUI */,
 				4B51818CFD6F6A0FD21DFB33 /* Telegraph */,
 				C5185BB0AED7DC860043BA42 /* Zip */,
@@ -112,6 +140,8 @@
 			mainGroup = E6F5D40A30168FCC00FEEC8A;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
+				B00100000000000000000003 /* XCLocalSwiftPackageReference "MapleSyrup/SAPKit" */,
+				B0010000000000000000000C /* XCLocalSwiftPackageReference "MapleSyrup/Zsign" */,
 				7FA68C9A5DCE94F7088B1AC7 /* XCRemoteSwiftPackageReference "PartyUI" */,
 				D8D4B724CB6FBC9A7913D52B /* XCRemoteSwiftPackageReference "Telegraph" */,
 				145A16138ECC23B7B003929E /* XCRemoteSwiftPackageReference "Zip" */,
@@ -131,16 +161,39 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B00100000000000000000007 /* build/Native/GoThirdPartyNotices.txt in Resources */,
+				B00100000000000000000009 /* build/Native/UNICORN-COPYING in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		B00100000000000000000006 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+				"$(SRCROOT)/build/Native/libunicorn.a",
+				"$(SRCROOT)/build/Native/libWaffleSAP.a",
+				"$(SRCROOT)/build/Native/GoThirdPartyNotices.txt",
+				"$(SRCROOT)/build/Native/UNICORN-COPYING",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/bash;
+			shellScript = "bash \"$SRCROOT/scripts/ensure-native.sh\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		E6F5D40F30168FCC00FEEC8A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E6DACF16307A6F020029F6FE /* Alertinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -185,7 +238,7 @@
 				DEVELOPMENT_TEAM = 8Z9M523WF2;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -249,7 +302,7 @@
 				DEVELOPMENT_TEAM = 8Z9M523WF2;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -273,11 +326,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 2;
-				DEVELOPMENT_TEAM = "";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8Z9M523WF2;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/build/Native/include";
+				INFOPLIST_FILE = "WaffleStore-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = WaffleStore;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -290,7 +346,14 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.2;
+				LIBRARY_SEARCH_PATHS = "$(SRCROOT)/build/Native";
+				MARKETING_VERSION = 2.3;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-Wl,-export_dynamic",
+					"-Wl,-force_load,$(SRCROOT)/build/Native/libunicorn.a",
+					"$(SRCROOT)/build/Native/libWaffleSAP.a",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.nxtcoreee3.WaffleStore;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -302,6 +365,7 @@
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "WaffleStore/MapleSyrup/Native/SAP-Bridging-Header.h";
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -313,11 +377,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 2;
-				DEVELOPMENT_TEAM = "";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8Z9M523WF2;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/build/Native/include";
+				INFOPLIST_FILE = "WaffleStore-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = WaffleStore;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -330,7 +397,14 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.2;
+				LIBRARY_SEARCH_PATHS = "$(SRCROOT)/build/Native";
+				MARKETING_VERSION = 2.3;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-Wl,-export_dynamic",
+					"-Wl,-force_load,$(SRCROOT)/build/Native/libunicorn.a",
+					"$(SRCROOT)/build/Native/libWaffleSAP.a",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.nxtcoreee3.WaffleStore;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -342,6 +416,7 @@
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "WaffleStore/MapleSyrup/Native/SAP-Bridging-Header.h";
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -370,6 +445,17 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		B00100000000000000000003 /* XCLocalSwiftPackageReference "MapleSyrup/SAPKit" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = MapleSyrup/SAPKit;
+		};
+		B0010000000000000000000C /* XCLocalSwiftPackageReference "MapleSyrup/Zsign" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = MapleSyrup/Zsign;
+		};
+/* End XCLocalSwiftPackageReference section */
 
 /* Begin XCRemoteSwiftPackageReference section */
 		145A16138ECC23B7B003929E /* XCRemoteSwiftPackageReference "Zip" */ = {
@@ -408,6 +494,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 7FA68C9A5DCE94F7088B1AC7 /* XCRemoteSwiftPackageReference "PartyUI" */;
 			productName = PartyUI;
+		};
+		B00100000000000000000002 /* MapleSAP */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B00100000000000000000003 /* XCLocalSwiftPackageReference "MapleSyrup/SAPKit" */;
+			productName = MapleSAP;
+		};
+		B0010000000000000000000D /* ZsignSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B0010000000000000000000C /* XCLocalSwiftPackageReference "MapleSyrup/Zsign" */;
+			productName = ZsignSwift;
 		};
 		C5185BB0AED7DC860043BA42 /* Zip */ = {
 			isa = XCSwiftPackageProductDependency;

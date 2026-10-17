@@ -1,0 +1,5 @@
+./category.go
+./class.go
+./objc.go
+./protocol.go
+./type_encoding.go

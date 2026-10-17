@@ -1,0 +1,14 @@
+./group.go
+./map.go
+./memhash_aes.go
+./memhash_aes_asm.go
+./memhash_align_nocheck.go
+./runtime.go
+./runtime_alg.go
+./runtime_fast32.go
+./runtime_fast64.go
+./runtime_faststr.go
+./runtime_hash64.go
+./table.go
+./table_debug.go
+./memhash_arm64.s

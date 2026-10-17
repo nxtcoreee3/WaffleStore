@@ -1,5 +1,6 @@
 import SwiftUI
 import PartyUI
+import UIKit
 
 struct ContentView: View {
     @State private var hasShownWelcome: Bool = false
@@ -93,35 +94,14 @@ struct ContentView: View {
             FavouritesView()
         }
         .onAppear {
-            appData.isAuthenticated = EncryptedKeychainWrapper.hasAuthInfo()
-            print("Found \(appData.isAuthenticated ? "auth" : "no auth") info in keychain")
-            if appData.isAuthenticated {
-                appData.applicationStatus = "Ready to Downgrade!".localized
-                appData.applicationIcon = "checkmark.circle.fill"
-                appData.applicationIconColor = .primary
-                guard let authInfo = EncryptedKeychainWrapper.getAuthInfo() else {
-                    print("Failed to get auth info from keychain, logging out")
-                    appData.isAuthenticated = false
-                    EncryptedKeychainWrapper.nuke()
-                    EncryptedKeychainWrapper.generateAndStoreKey()
-                    return
-                }
-                appData.appleId = authInfo["appleId"]! as! String
-                appData.password = authInfo["password"]! as! String
-                appData.ipaTool = IPATool(appleId: appData.appleId, password: appData.password)
-                let ret = appData.ipaTool?.authenticate()
-                print("Re-authenticated \(ret! ? "successfully" : "unsuccessfully")")
-            } else {
-                print("No auth info found in keychain, setting up by generating a key in SEP")
-                EncryptedKeychainWrapper.generateAndStoreKey()
-            }
+            appData.restoreStoreAccount()
         }
     }
     
     private var LogsSection: some View {
-        Section(header: HeaderLabel(text: "Logs".localized, icon: "terminal"), footer: Text("Originally created by mineek with QoL improvements and backend fixes made by jailbreak.party with further upgrades by nxtcoreee3.".localized)) {
+        Section(header: HeaderLabel(text: "Logs".localized, icon: "terminal"), footer: Text("Originally created by mineek and jailbreak.party. Further improvements and maintenance by nxtcoreee3. Backend powered by ipatool.".localized)) {
             VStack {
-                TerminalHeader(text: appData.applicationStatus, icon: appData.applicationIcon, color: appData.applicationIconColor)
+                TerminalHeader(text: appData.applicationStatus, icon: "checkmark.circle.fill", color: .green)
                 if appData.showsDowngradeProgress {
                     VStack(alignment: .leading, spacing: 6) {
                         ProgressView(value: appData.downgradeProgress)
@@ -188,13 +168,24 @@ struct ContentView: View {
     }
     
     private var InputAppSection: some View {
-        Section(header: HeaderLabel(text: "Downgrade App".localized, icon: "arrow.down.app"), footer: Text("To downgrade an app, it must have been purchased on your account at some point in the past (when the app has a cloud icon next to it). It must also not be installed on your device currently, but you can offload it.".localized)) {
+        Section(header: HeaderLabel(text: "Downgrade App".localized, icon: "arrow.down.app"), footer: Text("To downgrade an app, it must have been purchased on your account at some point in the past (when the app has a cloud icon next to it). The apps now need some sort of signing to work. Either export the IPAs and sign it yourself or import your signing certificates in Settings.".localized)) {
             VStack(spacing: 12) {
-                TextField("App Store Link".localized, text: $appData.appLink)
-                    .modifier(TextFieldBackground())
-                    .autocorrectionDisabled()
-                    .textInputAutocapitalization(.never)
-                
+                HStack(spacing: 8) {
+                    TextField("App Store Link".localized, text: $appData.appLink)
+                        .autocorrectionDisabled()
+                        .textInputAutocapitalization(.never)
+                    if !appData.appLink.isEmpty {
+                        Button {
+                            appData.appLink = ""
+                        } label: {
+                            Image(systemName: "xmark.circle.fill")
+                                .foregroundStyle(.secondary)
+                        }
+                        .accessibilityLabel("Clear app link")
+                    }
+                }
+                .modifier(TextFieldBackground())
+
                 Button(action: {
                     Haptic.shared.play(.soft)
                     showSearchView.toggle()
@@ -241,7 +232,7 @@ struct AppMenu: View {
             Button(action: {
                 let tempDir = FileManager.default.temporaryDirectory
                 let tempIPAURL = tempDir.appendingPathComponent("app.ipa")
-                presentShareSheet(with: tempIPAURL)
+                presentShareSheet(with: appData.downloadedIPAURL ?? tempIPAURL)
             }) {
                 Label("Export IPA".localized, systemImage: "arrow.up.doc")
             }
@@ -250,10 +241,7 @@ struct AppMenu: View {
             Button(action: {
                 Haptic.shared.play(.heavy)
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
-                    EncryptedKeychainWrapper.nuke()
-                    EncryptedKeychainWrapper.generateAndStoreKey()
-                    sleep(3)
-                    exitinator()
+                    appData.logoutStoreAccount()
                 }
             }) {
                 ButtonLabel(text: "Log Out".localized, icon: "arrow.right")

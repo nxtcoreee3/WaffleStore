@@ -1,0 +1,17 @@
+./atomtype_string.go
+./attr_string.go
+./buf.go
+./class_string.go
+./const.go
+./entry.go
+./format_string.go
+./hash.go
+./index_string.go
+./lang_string.go
+./line.go
+./name.go
+./open.go
+./tag_string.go
+./type.go
+./typeunit.go
+./unit.go

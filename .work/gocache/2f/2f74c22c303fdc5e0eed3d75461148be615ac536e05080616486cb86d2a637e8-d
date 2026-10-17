@@ -1,0 +1,15 @@
+./deflate.go
+./deflatefast.go
+./dict_decoder.go
+./huffman_bit_writer.go
+./huffman_code.go
+./inflate.go
+./level1.go
+./level2.go
+./level3.go
+./level4.go
+./level5.go
+./level6.go
+./load_store.go
+./regmask_other.go
+./token.go

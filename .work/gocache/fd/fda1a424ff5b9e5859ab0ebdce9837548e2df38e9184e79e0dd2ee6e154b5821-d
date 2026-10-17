@@ -1,0 +1,13 @@
+./arshal.go
+./arshal_any.go
+./arshal_default.go
+./arshal_embedded.go
+./arshal_funcs.go
+./arshal_methods.go
+./arshal_time.go
+./doc.go
+./errors.go
+./fields.go
+./fold.go
+./intern.go
+./options.go

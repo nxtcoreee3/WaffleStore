@@ -1,0 +1,7 @@
+./api.go
+./engine.go
+./engine_purego.go
+./normalize.go
+_cgo_gotypes.go
+engine_darwin.cgo1.go
+_cgo_import.go

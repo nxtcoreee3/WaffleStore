@@ -1,0 +1,7 @@
+./v2_decode.go
+./v2_encode.go
+./v2_indent.go
+./v2_inject.go
+./v2_options.go
+./v2_scanner.go
+./v2_stream.go

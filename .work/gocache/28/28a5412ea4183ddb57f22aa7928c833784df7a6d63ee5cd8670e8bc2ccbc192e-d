@@ -1,0 +1,5 @@
+./doc.go
+./errors.go
+./http.go
+./range.go
+./reader.go

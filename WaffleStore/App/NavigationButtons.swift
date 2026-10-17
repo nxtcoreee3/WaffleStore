@@ -7,13 +7,26 @@
 
 import SwiftUI
 import PartyUI
+import UIKit
 
 struct NavigationButtons: View {
     @EnvironmentObject var appData: AppData
+    @StateObject private var installer = OTAInstaller()
+
+    private var primaryActionTitle: String {
+        guard let record = appData.downloadReady else { return "Downgrade App".localized }
+        guard appData.signingCertificate != nil else { return "Export IPA" }
+        return record.filename.hasPrefix("Signed-") ? "Install" : "Sign & Install"
+    }
+
+    private var primaryActionIcon: String {
+        guard let record = appData.downloadReady else { return "square.and.arrow.down" }
+        guard appData.signingCertificate != nil else { return "arrow.up.doc" }
+        return record.filename.hasPrefix("Signed-") ? "arrow.down.app" : "signature"
+    }
     
     var body: some View {
         VStack {
-            // i hate this.
             if !appData.isAuthenticated {
                 Button(action: {
                     Haptic.shared.play(.soft)
@@ -21,22 +34,7 @@ struct NavigationButtons: View {
                         if appData.appleId.isEmpty || appData.password.isEmpty {
                             Alertinator.shared.alert(title: "No Apple ID details were input!".localized, body: "Login prompt description".localized)
                         } else {
-                            if appData.code.isEmpty {
-                                appData.ipaTool = IPATool(appleId: appData.appleId, password: appData.password)
-                                appData.ipaTool?.authenticate(requestCode: true)
-                                //appData.hasSent2FACode = true
-                                return
-                            }
-                            let finalPassword = appData.password + appData.code
-                            appData.ipaTool = IPATool(appleId: appData.appleId, password: finalPassword)
-                            let ret = appData.ipaTool?.authenticate()
-                            appData.isAuthenticated = ret ?? false
-                            
-                            if appData.isAuthenticated {
-                                appData.applicationStatus = "Ready to Downgrade!".localized
-                                appData.applicationIcon = "checkmark.circle.fill"
-                                appData.applicationIconColor = .secondary
-                            }
+                            appData.startAppleLogin()
                         }
                     }
                 }) {
@@ -79,30 +77,11 @@ struct NavigationButtons: View {
                     .buttonStyle(FancyButtonStyle())
                     .disabled(!appData.hasAppBeenServed)
                 } else {
-                    Button(action: {
-                        Haptic.shared.play(.soft)
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) {
-                            if appData.appLink.isEmpty {
-                                return
-                            }
-                            var appLinkParsed = appData.appLink
-                            appLinkParsed = appLinkParsed.components(separatedBy: "id").last ?? ""
-                            for char in appLinkParsed {
-                                if !char.isNumber {
-                                    appLinkParsed = String(appLinkParsed.prefix(upTo: appLinkParsed.firstIndex(of: char)!))
-                                    break
-                                }
-                            }
-                            print("App ID: \(appLinkParsed)")
-                            appData.isDowngrading = true
-                            appData.hasAppBeenServed = false
-                            downgradeApp(appId: appLinkParsed, ipaTool: appData.ipaTool!)
-                        }
-                    }) {
-                        ButtonLabel(text: "Downgrade App".localized, icon: "square.and.arrow.down")
+                    Button(action: runPrimaryAction) {
+                        ButtonLabel(text: primaryActionTitle, icon: primaryActionIcon)
                     }
                     .buttonStyle(FancyButtonStyle())
-                    .disabled(appData.appLink.isEmpty)
+                    .disabled(appData.downloadReady == nil && appData.appLink.isEmpty)
                     
                     let currentAppId = extractAppId(from: appData.appLink)
                     let existingFav = appData.favourites.first { extractAppId(from: $0.appLink) == currentAppId }
@@ -151,6 +130,48 @@ struct NavigationButtons: View {
             }
         }
     }
+
+    private func runPrimaryAction() {
+        Haptic.shared.play(.soft)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) {
+            if let record = appData.downloadReady {
+                handleDownload(record)
+            } else {
+                startDowngrade()
+            }
+        }
+    }
+
+    private func handleDownload(_ record: DownloadRecord) {
+        guard let fileURL = record.fileURL else { return }
+        guard appData.signingCertificate != nil else {
+            presentShareSheet(with: fileURL)
+            return
+        }
+
+        if record.filename.hasPrefix("Signed-") {
+            do {
+                try installer.start(record)
+                if let pageURL = installer.pageURL {
+                    UIApplication.shared.open(pageURL)
+                }
+            } catch {
+                Alertinator.shared.alert(title: "Installation failed", body: error.localizedDescription)
+            }
+        } else {
+            appData.signDownloadedIPA(record)
+        }
+    }
+
+    private func startDowngrade() {
+        guard !appData.appLink.isEmpty, let ipaTool = appData.ipaTool else { return }
+        let appID = extractAppId(from: appData.appLink)
+        guard !appID.isEmpty else { return }
+        print("App ID: \(appID)")
+        appData.isDowngrading = true
+        appData.hasAppBeenServed = false
+        downgradeApp(appId: appID, ipaTool: ipaTool)
+    }
 }
 
 func extractAppId(from link: String) -> String {
@@ -193,4 +214,3 @@ func fetchAppNameAndBundleId(forLink: String, completion: @escaping (String, Str
         }
     }.resume()
 }
-

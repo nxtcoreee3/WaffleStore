@@ -1,0 +1,7 @@
+package swift
+//go:cgo_import_dynamic dlclose dlclose ""
+//go:cgo_import_dynamic dlopen dlopen ""
+//go:cgo_import_dynamic dlsym dlsym ""
+//go:cgo_import_dynamic free free ""
+//go:cgo_import_dynamic malloc malloc ""
+//go:cgo_import_dynamic _ _ "/usr/lib/libSystem.B.dylib"

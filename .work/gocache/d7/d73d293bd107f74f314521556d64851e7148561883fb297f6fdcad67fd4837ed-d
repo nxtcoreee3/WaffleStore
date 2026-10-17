@@ -1,0 +1,10 @@
+./cmds.go
+./doc.go
+./export.go
+./fat.go
+./file.go
+./macho.go
+./objc.go
+./swift.go
+./swift_strings.go
+./toc.go

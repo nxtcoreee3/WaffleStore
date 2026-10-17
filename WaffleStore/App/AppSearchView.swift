@@ -66,6 +66,8 @@ struct AppSearchView: View {
                 } else {
                     List(results) { app in
                         Button(action: {
+                            guard let url = URL(string: app.trackViewUrl),
+                                  url.scheme == "http" || url.scheme == "https" else { return }
                             appData.appLink = app.trackViewUrl
                             Haptic.shared.play(.light)
                             dismiss()
@@ -101,9 +103,10 @@ struct AppSearchView: View {
                                     }
                                 }
                                 Spacer()
-                                Image(systemName: "plus.circle")
-                                    .font(.title3)
-                                    .foregroundColor(.accentColor)
+                                Image(systemName: "plus.circle.fill")
+                                    .font(.title2)
+                                    .foregroundStyle(.tint)
+                                    .accessibilityLabel("Add app")
                             }
                             .padding(.vertical, 4)
                         }
