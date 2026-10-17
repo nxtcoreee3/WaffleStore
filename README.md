@@ -4,7 +4,7 @@ A **jailed** app store app downgrader, based off of [MuffinStoreJailed](https://
 [PancakeStore (by jailbreakdotparty)](https://github.com/jailbreakdotparty/PancakeStore/releases/latest) • [MuffinStoreJailed (by mineek)](https://github.com/mineek/MuffinStoreJailed-Public)
 
 >[!IMPORTANT]
->WafleStore has been temporarily discontinued. Apple has changed their backend for authentication, meaning that we can no longer use the method we have been relied on. WaffleStore will not work until someone finds another backend solution. For the time being, the repo will still be up. Don't come complain about that it isn't working, there is nothing we can do.
+> The new method used in 2.3 (1) and above use a new method all thanks to Apple being annoying again. This new method exports encrypted IPAs and require signing of its own. The signing method inside of WaffleStore 2.3 (1) and above are known to be buggy and unreliable! 
 
 >[!WARNING]
 >Use this tool at your own risk! You may lose app data, and other damage could occur.
